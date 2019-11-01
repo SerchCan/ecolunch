@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Row, Col,Form, FormText, FormGroup, Label, Input, Jumbotron } from 'reactstrap';
+import { 
+  Row, 
+  Col,
+  Form,
+  FormText, 
+  FormGroup, 
+  Label, 
+  Input, 
+  Jumbotron, 
+  Button 
+} from 'reactstrap';
 
 class FormComponent extends Component {
   state = {
@@ -42,13 +52,17 @@ class FormComponent extends Component {
               <Input type="select">
                 {
                   availableTuppersIds.length ? availableTuppersIds.map((id) =>
-                  <option value={id}>Tupper #{id} </option>
+                  <option key={id} value={id}>Tupper #{id} </option>
                   ) : <option value={0}>No hay tuppers disponibles </option>
                 }
               </Input>
               </FormGroup>
             </Col>
+
           </Row>
+          <Col md={{size:2,offset:10}}>
+            <Button color="success">Prestar</Button>
+          </Col>
         </Form>
       </Jumbotron>
 

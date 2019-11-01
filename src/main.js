@@ -10,7 +10,9 @@ import root from './root.js';
 
 export default () => {
   const app = new App(root);
-  app.register(AvailableTuppersPlugin);
+  if(__NODE__){
+    app.register(AvailableTuppersPlugin);
+  }
   app.register(Styletron);
   app.register(Router);
   app.register(HelmetPlugin)

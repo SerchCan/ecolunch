@@ -1,11 +1,17 @@
 import {createPlugin} from 'fusion-core';
-
-export default createPlugin({
+import axios from 'axios';
+export default __NODE__ && createPlugin({
   middleware() {
-    return (ctx, next) => {
+    return async (ctx, next) => {
       if (ctx.method === 'GET' && ctx.path === '/tuppers/available') {
+        const query = {
+          where: { 
+            id_status:1
+          }
+        }
+        const { data } = await axios.get('http://localhost:4000/api/tuppers?filter',JSON.stringify(query));          
         ctx.body = {
-            availableTuppersIds: [1,2,3,4,6,7,8,9,10]
+          availableTuppersIds: data.map(({id_tupper})=>id_tupper)
         };
       }
       return next();
